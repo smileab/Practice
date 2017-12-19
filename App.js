@@ -4,54 +4,131 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
+    StyleSheet,
+    Text,
+    View
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import {
+    DKTabNavigator
+} from './js/DKTabNavigator';
+
+const DrawerLayoutAndroid = require('DrawerLayoutAndroid');
+const StatusBar = require('StatusBar');
+const Dimensions = require('Dimensions');
+const BackHandler = require('BackHandler');
 
 export default class App extends Component<{}> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
+
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this._handleBackButtonPress);
+    }
+
+
+    render() {
+        return (
+
+            <DrawerLayoutAndroid
+                drawerPosition={DrawerLayoutAndroid.positions.Left}
+                drawerWidth={Dimensions.get('window').width - 50}
+                keyboardDismissMode="on-drag"
+                onDrawerOpen={() => {
+                    this._overrideBackPressForDrawerLayout = true;
+                }}
+                onDrawerClose={() => {
+                    this._overrideBackPressForDrawerLayout = false;
+                }}
+                ref={(drawer) => {
+                    this.drawer = drawer;
+                }}
+                renderNavigationView={this._renderDrawerNavigation}
+                statusBarBackgroundColor="#589c90">
+                {this._renderDrawerContent()}
+            </DrawerLayoutAndroid>
+
+        );
+    }
+
+
+    _renderDrawerNavigation = () => {
+        return (
+            <View style={styles.drawerContentNavigation}>
+
+                <View style={styles.drawerContentNavigationItem}>
+                    <Text style={styles.drawerContentNavigationItemText}>
+                        111
+                    </Text>
+                </View>
+                <View style={styles.drawerContentNavigationItemLine}/>
+                <View style={styles.drawerContentNavigationItem}>
+                    <Text style={styles.drawerContentNavigationItemText}>
+                        222
+                    </Text>
+                </View>
+                <View style={styles.drawerContentNavigationItemLine}/>
+                <View style={styles.drawerContentNavigationItem}>
+                    <Text style={styles.drawerContentNavigationItemText}>
+                        333
+                    </Text>
+                </View>
+            </View>
+        );
+    };
+
+
+    _renderDrawerContent() {
+
+        return (
+            <View style={styles.drawerContentContent}>
+                <DKTabNavigator/>
+            </View>
+        );
+    }
+
+
+    _handleBackButtonPress = () => {
+        if (this._overrideBackPressForDrawerLayout) {
+            this.drawer && this.drawer.closeDrawer();
+            return true;
+        }
+        return false;
+    };
+
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+
+    drawerContentNavigation: {
+        flexDirection: 'column',
+        paddingTop: StatusBar.currentHeight,
+        backgroundColor: 'white',
+    },
+
+    drawerContentNavigationItem: {
+        flexDirection: 'column',
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f7f8f9'
+    },
+
+    drawerContentNavigationItemText: {
+        color: '#333333',
+        fontSize: 20,
+    },
+
+    drawerContentNavigationItemLine: {
+        backgroundColor: '#ff0000',
+        height: 0.5,
+    },
+
+    drawerContentContent: {
+        flexDirection: 'column',
+        flex: 1,
+        paddingTop: StatusBar.currentHeight,
+        backgroundColor: 'white',
+    },
+
 });
