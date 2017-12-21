@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import Router from './src/js/common/Router';
+import Router from './js/src/common/Router';
 
 AppRegistry.registerComponent('AwesomeProject', () => Router);
