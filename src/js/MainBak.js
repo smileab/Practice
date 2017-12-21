@@ -11,21 +11,19 @@ import {
     View
 } from 'react-native';
 
-import {
-    DKTabNavigator
-} from './js/DKTabNavigator';
+// import DKTabNavigator from '../DKTabNavigator';
+// import DKRouter from './DKRouter';
 
-const DrawerLayoutAndroid = require('DrawerLayoutAndroid');
-const StatusBar = require('StatusBar');
-const Dimensions = require('Dimensions');
-const BackHandler = require('BackHandler');
+import DrawerLayoutAndroid from 'DrawerLayoutAndroid';
+import StatusBar from 'StatusBar';
+import Dimensions from 'Dimensions';
+import BackHandler from 'BackHandler';
 
-export default class App extends Component<{}> {
+export default class Main extends Component<{}> {
 
     componentWillMount() {
         BackHandler.addEventListener('hardwareBackPress', this._handleBackButtonPress);
     }
-
 
     render() {
         return (
@@ -73,6 +71,7 @@ export default class App extends Component<{}> {
                         333
                     </Text>
                 </View>
+                <View style={styles.drawerContentNavigationItemLine}/>
             </View>
         );
     };
@@ -82,11 +81,11 @@ export default class App extends Component<{}> {
 
         return (
             <View style={styles.drawerContentContent}>
+                {/*<DKRouter/>*/}
                 <DKTabNavigator/>
             </View>
         );
     }
-
 
     _handleBackButtonPress = () => {
         if (this._overrideBackPressForDrawerLayout) {
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     drawerContentNavigation: {
         flexDirection: 'column',
         paddingTop: StatusBar.currentHeight,
-        backgroundColor: 'white',
+        backgroundColor: '#f7f8f9',
     },
 
     drawerContentNavigationItem: {
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f7f8f9'
+        backgroundColor: '#ffffff'
     },
 
     drawerContentNavigationItemText: {
@@ -120,15 +119,15 @@ const styles = StyleSheet.create({
     },
 
     drawerContentNavigationItemLine: {
-        backgroundColor: '#ff0000',
+        backgroundColor: '#999999',
         height: 0.5,
     },
 
     drawerContentContent: {
         flexDirection: 'column',
         flex: 1,
-        paddingTop: StatusBar.currentHeight,
         backgroundColor: 'white',
+
     },
 
 });

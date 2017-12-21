@@ -9,8 +9,7 @@ import {
 
 import TabNavigator from 'react-native-tab-navigator'
 
-export default class DKTabNavigator extends Component {
-
+export default class MainTabSalerInComp extends Component {
 
     constructor(props) {
         super(props);
@@ -37,7 +36,7 @@ export default class DKTabNavigator extends Component {
                         renderIcon={() => <Image style={styles.icon}
                                                  source={require("../res/drawable/ic_find_room_normal.png")}/>}
                         //选中时图标
-                        renderSelectedIcon={() => <Image style={[styles.icon, {tintColor: 'red'}]}
+                        renderSelectedIcon={() => <Image style={[styles.icon]}
                                                          source={require("../res/drawable/ic_find_room_selected.png")}/>}
                         //点击Event
                         onPress={() => this.setState({selectedTab: '0'})}>
@@ -59,7 +58,7 @@ export default class DKTabNavigator extends Component {
                         renderIcon={() => <Image style={styles.icon}
                                                  source={require("../res/drawable/ic_owner_join_normal.png")}/>}
                         //选中时图标
-                        renderSelectedIcon={() => <Image style={[styles.icon, {tintColor: 'red'}]}
+                        renderSelectedIcon={() => <Image style={[styles.icon]}
                                                          source={require("../res/drawable/ic_owner_join_selected.png")}/>}
                         //点击Event
                         onPress={() => this.setState({selectedTab: '1'})}>
@@ -68,6 +67,7 @@ export default class DKTabNavigator extends Component {
                         </View>
                     </TabNavigator.Item>
                 </TabNavigator>
+
             </View>
 
 
