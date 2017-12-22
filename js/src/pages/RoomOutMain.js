@@ -14,14 +14,14 @@ import {
 
 import {TabNavigator} from 'react-navigation';
 
-import InProfile from "./InProfile";
-import InHome from "./InHome";
+import OutHome from "./RoomOutHome";
+import OutProfile from "./RoomOutProfile";
 
 export const MainInTabs = TabNavigator({
     Home: {
-        screen: InHome,
+        screen: OutHome,
         navigationOptions: {
-            tabBarLabel: '首页',
+            tabBarLabel: 'o首页',
             tabBarIcon: () => <Image
                 style={{
                     width: 24,
@@ -32,9 +32,9 @@ export const MainInTabs = TabNavigator({
         }
     },
     Profile: {
-        screen: InProfile,
+        screen: OutProfile,
         navigationOptions: {
-            tabBarLabel: '我的',
+            tabBarLabel: 'o我的',
             tabBarIcon: () => <Image
                 style={{
                     width: 24,

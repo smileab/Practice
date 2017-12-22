@@ -12,8 +12,9 @@ import {
 } from 'react-native';
 
 
-import InMain from './InMain';
-import OutMain from './OutMain';
+import InMain from './RoomInMain';
+import OutMain from './RoomOutMain';
+import Login from './Login';
 
 import {DrawerNavigator} from 'react-navigation';
 
@@ -25,6 +26,18 @@ const styles = StyleSheet.create({
 });
 
 const MainNav = DrawerNavigator({
+    Login: {
+        screen: Login,
+        navigationOptions: {
+            drawerLabel: 'Login',
+            drawerIcon: ({tintColor}) => (
+                <Image
+                    source={require('../../res/drawable/ic_owner_join_selected.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            ),
+        }
+    },
     Home: {
         screen: InMain,
         navigationOptions: {

@@ -1,0 +1,5 @@
+export default {
+    LOGGED_INIT: 'LOGGED_INIT',
+    LOGGED_IN: 'LOGGED_IN',
+    LOGGED_DOING: 'LOGGED_DOING',
+}
