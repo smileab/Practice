@@ -1,44 +1,20 @@
 import React, {Component} from "react";
-import {Provider, connect} from "react-redux";
-import {addNavigationHelpers} from "react-navigation";
+import Router from "../common/Router";
 
-import getStore from "./store";
-import {AppNavigator} from './routers';
+import {Provider} from "react-redux";
 
-const navReducer = (state, action) => {
-    const newState = AppNavigator.router.getStateForAction(action, state);
-    return newState || state;
-};
+import configureStore from '../modle/redux/store/Store';
 
-const mapStateToProps = (state) => ({
-    nav: state.nav
-});
+const store = configureStore();
 
-class App extends Component {
+export default class App extends Component {
 
     render() {
         return (
-            <AppNavigator
-                navigation={addNavigationHelpers({
-                    dispatch: this.props.dispatch,
-                    state: this.props.nav
-                })}
-            />
+            <Provider store={store}>
+                <Router/>
+            </Provider>
         );
     }
 
 }
-
-const AppWithNavigationState = connect(mapStateToProps)(App);
-
-const store = getStore(navReducer);
-
-export default function App() {
-    return (
-        <Provider store={store}>
-            <AppWithNavigationState/>
-        </Provider>
-    );
-}
-
-// https://www.jianshu.com/p/8063ba79d08f

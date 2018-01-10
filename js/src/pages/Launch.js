@@ -9,12 +9,6 @@ import StatusBar from 'StatusBar';
 
 import {ROUTER_MAIN} from '../common/Router';
 
-
-import {Provider} from 'react-redux';
-import configureStore from '../modle/redux/store/Store';
-const store = configureStore();
-
-
 export default class Launch extends Component<{}> {
 
     componentDidMount() {
@@ -29,22 +23,16 @@ export default class Launch extends Component<{}> {
 
     }
 
-
     render() {
 
         return (
-            <Provider store={store}>
+            <View style={styles.launchContent}>
 
-                <View style={styles.launchContent}>
+                <Text style={styles.launchTextTitle}>
+                    Hello World React Native!
+                </Text>
 
-                    <Text style={styles.launchTextTitle}>
-                        Hello World React Native!
-                    </Text>
-
-                </View>
-
-            </Provider>
-
+            </View>
         );
     }
 

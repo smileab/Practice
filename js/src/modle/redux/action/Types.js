@@ -1,5 +1,4 @@
-export default {
-    LOGGED_INIT: 'LOGGED_INIT',
-    LOGGED_IN: 'LOGGED_IN',
-    LOGGED_DOING: 'LOGGED_DOING',
-}
+export const LOGGED_INIT = 'LOGGED_INIT';
+export const LOGGED_DOING = 'LOGGED_DOING';
+export const LOGGED_SUCCESS = 'LOGGED_SUCCESS';
+export const LOGGED_FAILURE = 'LOGGED_FAILURE';

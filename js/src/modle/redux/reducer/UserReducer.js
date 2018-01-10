@@ -2,30 +2,31 @@ import * as Types from '../action/Types';
 
 // 初始状态
 const initialState = {
-    status: 'init', // init,doing,done
-    isSuccess: false,
-    user: null,
+    rdType: Types.LOGGED_INIT,
+    rdPayload: null,
 }
 
 export default function loginIn(state = initialState, action) {
-    switch (action.type) {
+    switch (action.rdType) {
         case Types.LOGGED_INIT: // 初始状态
             return Object.assign({}, state, {
-                status: Types.LOGGED_INIT,
-                isSuccess: false,
-                user: null
+                rdType: Types.LOGGED_INIT,
+                rdPayload: null
             });
         case Types.LOGGED_DOING: // 正在登录
             return Object.assign({}, state, {
-                status: Types.LOGGED_DOING,
-                isSuccess: false,
-                user: null
+                rdType: Types.LOGGED_DOING,
+                rdPayload: null
             });
-        case Types.LOGGED_IN: // 登录完成
+        case Types.LOGGED_SUCCESS: // 登录完成
             return Object.assign({}, state, {
-                status: Types.LOGGED_IN,
-                isSuccess: action.isSuccess,
-                user: action.user
+                rdType: Types.LOGGED_SUCCESS,
+                rdPayload: action.rdPayload
+            })
+        case Types.LOGGED_FAILURE: // 登录失败
+            return Object.assign({}, state, {
+                rdType: Types.LOGGED_FAILURE,
+                rdPayload: null,
             })
         default:
             return state;
